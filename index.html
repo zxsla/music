@@ -24,19 +24,19 @@
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255,140,255,0.25), rgba(0,220,255,0.32), rgba(180,100,255,0.22));
+            background: linear-gradient(135deg, rgba(255,140,255,0.28), rgba(0,220,255,0.35), rgba(180,100,255,0.25));
             z-index: -1;
         }
         .header-marquee {
-            background: rgba(255,150,255,0.18);
+            background: rgba(255,150,255,0.22);
             backdrop-filter: blur(10px);
-            padding: 12px 0;
+            padding: 13px 0;
             text-align: center;
             font-weight: bold;
             color: #fff;
             text-shadow: 0 0 10px #ff9aff;
             position: sticky; top: 0; z-index: 10;
-            font-size: 1rem;
+            font-size: 1.02rem;
         }
         .main {
             flex: 1;
@@ -46,18 +46,18 @@
             justify-content: center;
         }
         .glass-box {
-            background: rgba(255,255,255,0.09);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,180,255,0.35);
-            border-radius: 24px;
-            padding: 30px 25px;
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(22px);
+            border: 1px solid rgba(255,200,255,0.4);
+            border-radius: 26px;
+            padding: 32px 25px;
             text-align: center;
-            max-width: 620px;
+            max-width: 630px;
             width: 100%;
-            box-shadow: 0 15px 45px rgba(255,120,255,0.25);
+            box-shadow: 0 20px 50px rgba(255,120,255,0.28);
         }
         .title {
-            font-size: 2.4rem;           /* 已缩小 */
+            font-size: 2.35rem;
             font-weight: bold;
             letter-spacing: 6px;
             background: linear-gradient(90deg, #ff9aff, #00f0ff, #ff9aff);
@@ -66,56 +66,74 @@
             margin-bottom: 12px;
         }
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.12rem;
             margin-bottom: 25px;
-            opacity: 0.9;
+            opacity: 0.92;
         }
-        /* 歌词区 */
+        /* 歌词区 - 加强显示 */
         .lyric-container {
-            height: 68px;
-            background: rgba(0,0,0,0.35);
-            border-radius: 14px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.48);
+            border: 2px solid rgba(255, 220, 255, 0.55);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,200,255,0.2);
+            margin-bottom: 25px;
+            box-shadow: 0 0 18px rgba(0, 240, 255, 0.4);
         }
         #lyric-text {
-            font-size: 1.05rem;
-            padding: 0 20px;
-            text-shadow: 0 0 8px #00f0ff;
-            min-height: 1.4em;
+            font-size: 1.18rem;
+            font-weight: bold;
+            padding: 0 25px;
+            text-align: center;
+            text-shadow: 0 0 12px #00f0ff, 0 0 25px #ff9aff;
+            transition: opacity 0.5s ease;
+            line-height: 1.45;
         }
         .player-title {
-            font-size: 1.25rem;
-            margin: 10px 0 15px;
+            font-size: 1.28rem;
+            margin: 10px 0 18px;
         }
         audio {
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
         .song-list {
             text-align: left;
-            max-height: 240px;
+            max-height: 230px;
             overflow-y: auto;
-            background: rgba(0,0,0,0.2);
-            border-radius: 12px;
+            background: rgba(0,0,0,0.22);
+            border-radius: 14px;
+            border: 1px solid rgba(255,180,255,0.2);
         }
         .song-item {
-            padding: 13px 18px;
+            padding: 14px 20px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
             cursor: pointer;
         }
         .song-item:hover, .song-item.active {
-            background: rgba(255,150,255,0.25);
+            background: rgba(255,150,255,0.28);
             color: #ff9aff;
         }
-        .bottom {
-            padding: 18px;
+        /* 底部时间 - 加强显示 */
+        .bottom-info {
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(12px);
+            padding: 20px;
             text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.85;
+            border-top: 1px solid rgba(255,200,255,0.3);
+        }
+        #display-date {
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+            opacity: 0.95;
+        }
+        #display-time {
+            font-size: 2.1rem;
+            font-weight: bold;
+            color: #00f0ff;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
         }
     </style>
 </head>
@@ -132,20 +150,21 @@
             <div class="title">ETERNITY</div>
             <div class="subtitle">白嫖联盟 · 永恒音乐空间</div>
 
-            <!-- 歌词区 -->
             <div class="lyric-container">
                 <div id="lyric-text">♪ 愿时光温柔，愿你永恒 ♪</div>
             </div>
 
-            <div class="player-title" id="track-name">正在载入...</div>
+            <div class="player-title" id="track-name">正在载入歌曲...</div>
             <audio id="audio-player" controls></audio>
 
             <div class="song-list" id="list-render"></div>
         </div>
     </div>
 
-    <div class="bottom">
-        愿每一首歌，都陪你走到永恒
+    <!-- 底部具体时间日期 -->
+    <div class="bottom-info">
+        <div id="display-date">2026年4月3日 星期五</div>
+        <div id="display-time">14:21:00</div>
     </div>
 
     <script>
@@ -171,7 +190,8 @@
             "把心收回 忘了那是谁",
             "在喧嚣世界 找一点安慰",
             "白嫖联盟 永恒相伴",
-            "愿你被这个世界温柔以待"
+            "愿你被这个世界温柔以待",
+            "♡ Eternity ♡"
         ];
 
         function renderSongs() {
@@ -206,14 +226,28 @@
                 setTimeout(() => {
                     lyricText.innerText = lyricsArray[rand];
                     lyricText.style.opacity = 1;
-                }, 300);
+                }, 400);
             }
         }, 5000);
+
+        // 实时时间日期
+        function updateTime() {
+            const now = new Date();
+            const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            
+            const dateStr = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${weekDays[now.getDay()]}`;
+            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
+            
+            document.getElementById('display-date').innerText = dateStr;
+            document.getElementById('display-time').innerText = timeStr;
+        }
 
         window.onload = () => {
             renderSongs();
             audio.src = mySongs[0].url;
             trackTitle.innerText = mySongs[0].name;
+            setInterval(updateTime, 1000);
+            updateTime();
         };
     </script>
 </body>
