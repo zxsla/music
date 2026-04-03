@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>经典旋律 | 白嫖联盟科技空间</title>
+    <title>经典旋律 | 科技音频空间</title>
     <style>
         :root {
             --neon-blue: #00f3ff;
@@ -12,12 +12,7 @@
             --glass: rgba(255, 255, 255, 0.05);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
         body {
             color: #fff;
@@ -29,16 +24,12 @@
             overflow-x: hidden;
         }
 
-        /* 科技感背景图层 - 杨幂 40px 模糊 */
+        /* 背景：杨幂模糊40px + 科技感滤镜 */
         .bg-layer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(135deg, rgba(2, 11, 26, 0.85), rgba(18, 0, 36, 0.85)),
-                url('https://w.wallhaven.cc/full/85/wallhaven-85m7qy.jpg');
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(2, 11, 26, 0.85), rgba(18, 0, 36, 0.85)),
+                        url('https://w.wallhaven.cc/full/85/wallhaven-85m7qy.jpg');
             background-size: cover;
             background-position: center;
             filter: blur(40px);
@@ -46,36 +37,27 @@
             transform: scale(1.1);
         }
 
-        /* 动态网格 */
+        /* 动态网格背景 */
         .bg-grid {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
             z-index: -1;
-            animation: gridMove 10s linear infinite;
+            animation: gridMove 8s linear infinite;
         }
 
-        @keyframes gridMove {
-            from { transform: translateY(0); }
-            to { transform: translateY(50px); }
-        }
+        @keyframes gridMove { from { transform: translateY(0); } to { transform: translateY(40px); } }
 
-        /* 跑马灯 */
+        /* 顶部跑马灯 */
         .marquee {
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
             padding: 10px 0;
             border-bottom: 2px solid var(--neon-blue);
             box-shadow: 0 0 15px var(--neon-blue);
-            position: fixed;
-            top: 0;
-            z-index: 100;
+            position: fixed; top: 0; z-index: 100;
         }
 
         .marquee-text {
@@ -84,127 +66,129 @@
             animation: moveText 25s linear infinite;
             color: var(--neon-blue);
             font-weight: bold;
-            text-transform: uppercase;
         }
 
-        @keyframes moveText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
+        @keyframes moveText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* 搜索框区域 */
-        .search-container {
-            margin-top: 80px;
-            width: 90%;
-            max-width: 650px;
-            z-index: 10;
-        }
-
+        /* 搜索框 */
+        .search-area { margin-top: 80px; width: 90%; max-width: 600px; z-index: 10; }
         .search-input {
-            width: 100%;
-            padding: 15px 25px;
+            width: 100%; padding: 12px 25px;
             background: rgba(0, 0, 0, 0.7);
             border: 2px solid var(--neon-purple);
             border-radius: 50px;
-            color: #fff;
-            outline: none;
-            box-shadow: 0 0 15px var(--neon-purple);
-            transition: 0.3s;
+            color: #fff; outline: none;
+            box-shadow: 0 0 10px var(--neon-purple);
         }
 
-        .search-input:focus {
-            box-shadow: 0 0 25px var(--neon-blue);
-            border-color: var(--neon-blue);
-        }
-
-        .source-tags {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .tag {
-            font-size: 11px;
-            padding: 4px 10px;
-            border: 1px solid var(--neon-blue);
-            border-radius: 4px;
-            color: var(--neon-blue);
-            background: rgba(0, 243, 255, 0.05);
-        }
-
-        /* 主面板 */
-        .glass-panel {
-            margin-top: 30px;
-            width: 95%;
-            max-width: 850px;
+        /* 主体面板 */
+        .main-panel {
+            margin: 30px 0 50px;
+            width: 90%; max-width: 800px;
             background: var(--glass);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 35px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
-            margin-bottom: 50px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
 
-        .header h1 {
-            font-size: 2.2rem;
-            letter-spacing: 4px;
-            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* 播放器容器 */
-        .player-box {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 25px 0;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-        }
-
+        .player-header { border-left: 4px solid var(--neon-blue); padding-left: 15px; margin-bottom: 20px; }
+        
         audio {
-            width: 100%;
-            height: 45px;
+            width: 100%; margin: 15px 0;
             filter: invert(1) hue-rotate(180deg) brightness(1.5);
         }
 
-        /* 歌曲列表样式 */
-        .song-list {
-            max-height: 400px;
-            overflow-y: auto;
-            text-align: left;
-            padding-right: 10px;
-        }
-
-        /* 自定义滚动条 */
-        .song-list::-webkit-scrollbar { width: 5px; }
-        .song-list::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
+        /* 播放列表 */
+        .list-container { max-height: 350px; overflow-y: auto; text-align: left; }
+        .list-container::-webkit-scrollbar { width: 4px; }
+        .list-container::-webkit-scrollbar-thumb { background: var(--neon-blue); }
 
         .song-item {
-            padding: 14px 20px;
+            padding: 12px 15px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between;
+            transition: 0.3s;
         }
 
-        .song-item:hover {
-            background: rgba(0, 243, 255, 0.15);
-            transform: scale(1.02);
+        .song-item:hover { background: rgba(0, 243, 255, 0.15); }
+        .song-item.active { background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); border-left: 3px solid var(--neon-blue); }
+        .tag { font-size: 10px; opacity: 0.6; border: 1px solid; padding: 1px 4px; border-radius: 3px; }
+
+        /* 底部信息 */
+        footer {
+            width: 100%; background: rgba(0, 0, 0, 0.95);
+            padding: 25px; border-top: 1px solid var(--neon-blue);
         }
 
-        .song-item.active {
-            border-left: 5px solid var(--neon-blue);
-            background: rgba(0, 243, 255, 0.1);
-            color: var(--neon-blue);
-            font-weight: bold;
-        }
+        .footer-content { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
+        .intro-box { flex: 2; font-size: 13px; color: #999; padding-right: 20px; }
+        .time-box { flex: 1; text-align: right; color: var(--neon-purple); }
 
-        .quality {
-            font-size: 10px;
-            padding: 2px 6px;
-            border
+    </style>
+</head>
+<body>
+
+    <div class="bg-layer"></div>
+    <div class="bg-grid"></div>
+
+    <div class="marquee">
+        <div class="marquee-text">
+            SYSTEM READY :: 经典旋律音频中心 :: 正在接入 music.json 与 念心.js 双源引擎 :: 音乐永远免费 :: 资源来自白嫖联盟...
+        </div>
+    </div>
+
+    <div class="search-area">
+        <input type="text" id="searchInput" class="search-input" placeholder="输入关键词搜索 (QingMusic/念心.js)...">
+    </div>
+
+    <div class="main-panel">
+        <div class="player-header">
+            <h1 style="letter-spacing: 3px; background: linear-gradient(to right, #00f3ff, #bc13fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">经典旋律</h1>
+            <p id="curTitle" style="font-size: 13px; color: var(--neon-blue); margin-top: 5px;">等待加载...</p>
+        </div>
+
+        <audio id="player" controls autoplay></audio>
+
+        <div class="list-container" id="list">
+            </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="intro-box">
+                <h4 style="color:var(--neon-blue); margin-bottom: 5px;">关于经典旋律</h4>
+                <p>本站由白嫖联盟技术支持。采用杨幂背景图作为系统核心稳定性组件。已成功集成无损音频接口及QingMusic解析规则。本程序仅供交流学习。</p>
+            </div>
+            <div class="time-box">
+                <div id="dateStr" style="font-size: 12px; margin-bottom: 5px;">2024/01/01</div>
+                <div id="timeStr" style="font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 10px var(--neon-purple);">00:00:00</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 确保所有歌曲链接正确
+        const playlist = [
+            { name: "明年今日", url: "https://files.catbox.moe/lsees9.flac", type: "FLAC" },
+            { name: "爱就爱了", url: "https://files.catbox.moe/hbet5m.mp3", type: "MP3" },
+            { name: "好好恋爱", url: "https://files.catbox.moe/t6x5cp.flac", type: "FLAC" },
+            { name: "光辉岁月", url: "https://files.catbox.moe/4tx3om.flac", type: "FLAC" },
+            { name: "第几次爱的人", url: "https://files.catbox.moe/o5rhh5.flac", type: "FLAC" },
+            { name: "二宝子的楼兰", url: "https://files.catbox.moe/yejdad.flac", type: "FLAC" },
+            { name: "富士山下", url: "https://files.catbox.moe/qgh684.flac", type: "FLAC" },
+            { name: "好心好报", url: "https://files.catbox.moe/5b4cw2.flac", type: "FLAC" }
+        ];
+
+        const audio = document.getElementById('player');
+        const listContainer = document.getElementById('list');
+        const curTitle = document.getElementById('curTitle');
+        let index = 0;
+
+        function render() {
+            listContainer.innerHTML = '';
+            playlist.forEach((song, i) => {
+                const item = document.createElement('div');
+                item.className = `song-item ${i === index ? 'active' : ''}`;
