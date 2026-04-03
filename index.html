@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* 背景：杨幂模糊40px + 科技感滤镜 */
+        /* 背景：杨幂模糊40px */
         .bg-layer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -37,7 +37,6 @@
             transform: scale(1.1);
         }
 
-        /* 动态网格背景 */
         .bg-grid {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -50,46 +49,36 @@
 
         @keyframes gridMove { from { transform: translateY(0); } to { transform: translateY(40px); } }
 
-        /* 顶部跑马灯 */
         .marquee {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 10px 0;
-            border-bottom: 2px solid var(--neon-blue);
-            box-shadow: 0 0 15px var(--neon-blue);
+            width: 100%; background: rgba(0, 0, 0, 0.9);
+            padding: 10px 0; border-bottom: 2px solid var(--neon-blue);
             position: fixed; top: 0; z-index: 100;
         }
 
         .marquee-text {
-            display: inline-block;
-            white-space: nowrap;
+            display: inline-block; white-space: nowrap;
             animation: moveText 25s linear infinite;
-            color: var(--neon-blue);
-            font-weight: bold;
+            color: var(--neon-blue); font-weight: bold;
         }
 
         @keyframes moveText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* 搜索框 */
         .search-area { margin-top: 80px; width: 90%; max-width: 600px; z-index: 10; }
         .search-input {
             width: 100%; padding: 12px 25px;
             background: rgba(0, 0, 0, 0.7);
             border: 2px solid var(--neon-purple);
-            border-radius: 50px;
-            color: #fff; outline: none;
+            border-radius: 50px; color: #fff; outline: none;
             box-shadow: 0 0 10px var(--neon-purple);
         }
 
-        /* 主体面板 */
         .main-panel {
             margin: 30px 0 50px;
             width: 90%; max-width: 800px;
             background: var(--glass);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 20px; padding: 30px;
             box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
 
@@ -100,13 +89,19 @@
             filter: invert(1) hue-rotate(180deg) brightness(1.5);
         }
 
-        /* 播放列表 */
-        .list-container { max-height: 350px; overflow-y: auto; text-align: left; }
-        .list-container::-webkit-scrollbar { width: 4px; }
-        .list-container::-webkit-scrollbar-thumb { background: var(--neon-blue); }
+        /* 列表区域 - 确保高度足够且可见 */
+        .list-container { 
+            min-height: 200px; 
+            max-height: 400px; 
+            overflow-y: auto; 
+            text-align: left;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 10px;
+        }
 
         .song-item {
-            padding: 12px 15px;
+            padding: 15px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             cursor: pointer;
             display: flex; justify-content: space-between;
@@ -114,19 +109,17 @@
         }
 
         .song-item:hover { background: rgba(0, 243, 255, 0.15); }
-        .song-item.active { background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); border-left: 3px solid var(--neon-blue); }
-        .tag { font-size: 10px; opacity: 0.6; border: 1px solid; padding: 1px 4px; border-radius: 3px; }
+        .song-item.active { background: rgba(0, 243, 255, 0.2); color: var(--neon-blue); border-left: 3px solid var(--neon-blue); font-weight: bold; }
+        .tag { font-size: 10px; opacity: 0.8; border: 1px solid; padding: 1px 4px; border-radius: 3px; color: var(--neon-purple); }
 
-        /* 底部信息 */
         footer {
             width: 100%; background: rgba(0, 0, 0, 0.95);
             padding: 25px; border-top: 1px solid var(--neon-blue);
         }
 
-        .footer-content { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
-        .intro-box { flex: 2; font-size: 13px; color: #999; padding-right: 20px; }
-        .time-box { flex: 1; text-align: right; color: var(--neon-purple); }
-
+        .footer-content { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .intro-box { flex: 2; font-size: 13px; color: #999; padding-right: 20px; min-width: 250px; }
+        .time-box { flex: 1; text-align: right; color: var(--neon-purple); min-width: 150px; }
     </style>
 </head>
 <body>
@@ -136,7 +129,7 @@
 
     <div class="marquee">
         <div class="marquee-text">
-            SYSTEM READY :: 经典旋律音频中心 :: 正在接入 music.json 与 念心.js 双源引擎 :: 音乐永远免费 :: 资源来自白嫖联盟...
+            SYSTEM ONLINE :: 经典旋律中心 :: 正在同步 music.json 及 念心.js 接口 :: 资源来自白嫖联盟...
         </div>
     </div>
 
@@ -147,31 +140,30 @@
     <div class="main-panel">
         <div class="player-header">
             <h1 style="letter-spacing: 3px; background: linear-gradient(to right, #00f3ff, #bc13fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">经典旋律</h1>
-            <p id="curTitle" style="font-size: 13px; color: var(--neon-blue); margin-top: 5px;">等待加载...</p>
+            <p id="curTitle" style="font-size: 13px; color: var(--neon-blue); margin-top: 5px;">正在加载列表...</p>
         </div>
 
-        <audio id="player" controls autoplay></audio>
+        <audio id="player" controls></audio>
 
-        <div class="list-container" id="list">
-            </div>
+        <div class="list-container" id="list"></div>
     </div>
 
     <footer>
         <div class="footer-content">
             <div class="intro-box">
                 <h4 style="color:var(--neon-blue); margin-bottom: 5px;">关于经典旋律</h4>
-                <p>本站由白嫖联盟技术支持。采用杨幂背景图作为系统核心稳定性组件。已成功集成无损音频接口及QingMusic解析规则。本程序仅供交流学习。</p>
+                <p>本站由白嫖联盟技术支持。系统核心采用杨幂背景图作为稳定性挂载件。程序仅供交流学习。</p>
             </div>
             <div class="time-box">
-                <div id="dateStr" style="font-size: 12px; margin-bottom: 5px;">2024/01/01</div>
+                <div id="dateStr" style="font-size: 12px; margin-bottom: 5px;">加载日期...</div>
                 <div id="timeStr" style="font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 10px var(--neon-purple);">00:00:00</div>
             </div>
         </div>
     </footer>
 
     <script>
-        // 确保所有歌曲链接正确
-        const playlist = [
+        // 1. 数据定义
+        const songs = [
             { name: "明年今日", url: "https://files.catbox.moe/lsees9.flac", type: "FLAC" },
             { name: "爱就爱了", url: "https://files.catbox.moe/hbet5m.mp3", type: "MP3" },
             { name: "好好恋爱", url: "https://files.catbox.moe/t6x5cp.flac", type: "FLAC" },
@@ -183,12 +175,54 @@
         ];
 
         const audio = document.getElementById('player');
-        const listContainer = document.getElementById('list');
+        const listDiv = document.getElementById('list');
         const curTitle = document.getElementById('curTitle');
-        let index = 0;
+        let currentIndex = 0;
 
+        // 2. 渲染函数 (修复了列表不显示的BUG)
         function render() {
-            listContainer.innerHTML = '';
-            playlist.forEach((song, i) => {
-                const item = document.createElement('div');
-                item.className = `song-item ${i === index ? 'active' : ''}`;
+            if (!listDiv) return;
+            let html = '';
+            songs.forEach((s, i) => {
+                html += `
+                <div class="song-item ${i === currentIndex ? 'active' : ''}" onclick="playSong(${i})">
+                    <span>${i+1}. ${s.name}</span>
+                    <span class="tag">${s.type}</span>
+                </div>`;
+            });
+            listDiv.innerHTML = html;
+        }
+
+        // 3. 播放逻辑
+        function playSong(i) {
+            currentIndex = i;
+            audio.src = songs[i].url;
+            curTitle.innerText = "正在播放: " + songs[i].name;
+            render(); // 刷新高亮状态
+            audio.play().catch(() => {
+                curTitle.innerText = "点击播放: " + songs[i].name;
+            });
+        }
+
+        // 4. 自动播放下一首
+        audio.onended = () => {
+            currentIndex = (currentIndex + 1) % songs.length;
+            playSong(currentIndex);
+        };
+
+        // 5. 时间刷新
+        function updateClock() {
+            const n = new Date();
+            document.getElementById('dateStr').innerText = n.toLocaleDateString();
+            document.getElementById('timeStr').innerText = n.toLocaleTimeString();
+        }
+
+        // 6. 初始化执行
+        window.onload = () => {
+            render();
+            setInterval(updateClock, 1000);
+            updateClock();
+            
+            // 搜索框回车监听
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if(
