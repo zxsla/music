@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>♡ Eternity ✨</title>
+    <title>Eternity</title>
     <style>
         :root {
-            --main-color: #ff9aff;
-            --cyan: #00f0ff;
-            --glass: rgba(255, 255, 255, 0.10);
-            --border: rgba(255, 180, 255, 0.35);
+            --main-pink: #ff9aff;
+            --main-cyan: #00f0ff;
+            --glass: rgba(255, 255, 255, 0.11);
+            --border: rgba(255, 180, 255, 0.4);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft YaHei", sans-serif; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: "Microsoft YaHei", system-ui, sans-serif; 
+        }
 
         body {
             min-height: 100vh;
@@ -29,39 +34,41 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://w.wallhaven.cc/full/85/wallhaven-85m7qy.jpg') no-repeat center center;
             background-size: cover;
-            filter: blur(38px) brightness(0.62);
+            filter: blur(40px) brightness(0.60);
             z-index: -2;
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, 
-                rgba(255, 140, 255, 0.28) 0%,
-                rgba(0, 210, 255, 0.35) 50%,
-                rgba(180, 100, 255, 0.25) 100%);
+                rgba(255, 140, 255, 0.25) 0%,
+                rgba(0, 220, 255, 0.38) 50%,
+                rgba(200, 120, 255, 0.22) 100%);
             z-index: -1;
         }
 
         /* 跑马灯 */
         .header-marquee {
             width: 100%;
-            background: rgba(255, 150, 255, 0.25);
+            background: rgba(255, 150, 255, 0.22);
             backdrop-filter: blur(12px);
-            padding: 13px 0;
+            padding: 14px 0;
             border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
         }
 
         .marquee-content {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee-run 22s linear infinite;
+            animation: marquee-run 25s linear infinite;
             font-weight: bold;
             color: #fff;
-            text-shadow: 0 0 12px var(--main-color);
-            font-size: 1.05rem;
+            text-shadow: 0 0 12px var(--main-pink);
+            font-size: 1.1rem;
         }
 
         @keyframes marquee-run {
@@ -71,7 +78,7 @@
 
         .main-wrapper {
             flex: 1;
-            padding: 25px 20px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,28 +86,111 @@
 
         .glass-box {
             width: 100%;
-            max-width: 620px;
+            max-width: 630px;
             background: var(--glass);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(22px);
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 30px 25px;
+            border-radius: 26px;
+            padding: 35px 28px;
             text-align: center;
-            box-shadow: 0 15px 45px rgba(255, 100, 255, 0.25);
+            box-shadow: 0 20px 50px rgba(255, 120, 255, 0.28);
         }
 
-        /* 新标题 Eternity */
+        /* Eternity 主标题 */
         .eternity-title {
-            font-size: 2.4rem;
-            font-weight: bold;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 6px;
             background: linear-gradient(90deg, #ff9aff, #00f0ff, #ff9aff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(255, 150, 255, 0.6);
+            margin-bottom: 25px;
+            text-shadow: 0 0 25px rgba(255, 150, 255, 0.5);
         }
 
         .player-title { 
             color: #fff; 
-            font-size:
+            font-size: 1.3rem; 
+            margin: 10px 0 22px;
+            opacity: 0.95;
+        }
+
+        /* 歌词区 */
+        .lyric-container {
+            height: 75px;
+            overflow: hidden;
+            margin-bottom: 22px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 200, 255, 0.25);
+        }
+
+        #lyric-text { 
+            color: #fff; 
+            font-size: 1.08rem; 
+            text-shadow: 0 0 12px var(--main-cyan);
+            padding: 0 25px;
+        }
+
+        audio {
+            width: 100%;
+            filter: invert(0.85) hue-rotate(310deg) brightness(1.2);
+            margin-bottom: 28px;
+        }
+
+        .song-list {
+            text-align: left;
+            max-height: 290px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.18);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 180, 255, 0.22);
+        }
+
+        .song-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            transition: 0.25s;
+        }
+
+        .song-item:hover { background: rgba(255, 150, 255, 0.18); }
+        .song-item.active {
+            border-left: 5px solid #ff9aff;
+            background: rgba(255, 150, 255, 0.25);
+            color: #ff9aff;
+            font-weight: bold;
+        }
+
+        /* 底部时间 */
+        .bottom-info {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(14px);
+            padding: 28px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            max-width: 820px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .intro-section { flex: 2; min-width: 230px; padding-right: 30px; }
+        .time-section { flex: 1; text-align: right; min-width: 190px; }
+
+        #display-date { 
+            font-size: 1.12rem; 
+            opacity: 0.92; 
+            margin-bottom: 8px; 
+        }
+        #display-time { 
+            font-size: 2.
