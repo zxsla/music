@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>经典旋律 | 白嫖联盟</title>
+    <title>♡ Eternity ✨</title>
     <style>
         :root {
-            --main-blue: #00f0ff;
-            --main-cyan: #00d2ff;
-            --glass-white: rgba(255, 255, 255, 0.12);
-            --border-white: rgba(0, 240, 255, 0.35);
+            --main-color: #ff9aff;
+            --cyan: #00f0ff;
+            --glass: rgba(255, 255, 255, 0.10);
+            --border: rgba(255, 180, 255, 0.35);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft YaHei", sans-serif; }
@@ -23,45 +23,45 @@
             flex-direction: column;
         }
 
-        /* 炫酷天蓝色背景 */
+        /* 背景 */
         .bg-fixed {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://w.wallhaven.cc/full/85/wallhaven-85m7qy.jpg') no-repeat center center;
             background-size: cover;
-            filter: blur(35px) brightness(0.65);
+            filter: blur(38px) brightness(0.62);
             z-index: -2;
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
-        /* 天蓝色渐变叠加层 */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, 
-                rgba(0, 210, 255, 0.35) 0%,
-                rgba(0, 120, 255, 0.45) 50%,
-                rgba(0, 200, 255, 0.3) 100%);
+                rgba(255, 140, 255, 0.28) 0%,
+                rgba(0, 210, 255, 0.35) 50%,
+                rgba(180, 100, 255, 0.25) 100%);
             z-index: -1;
         }
 
-        /* 跑马灯 - 加强天蓝色 */
+        /* 跑马灯 */
         .header-marquee {
             width: 100%;
-            background: rgba(0, 210, 255, 0.35);
+            background: rgba(255, 150, 255, 0.25);
             backdrop-filter: blur(12px);
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-white);
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
         }
 
         .marquee-content {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee-run 18s linear infinite;
+            animation: marquee-run 22s linear infinite;
             font-weight: bold;
             color: #fff;
-            text-shadow: 0 0 10px var(--main-blue);
+            text-shadow: 0 0 12px var(--main-color);
+            font-size: 1.05rem;
         }
 
         @keyframes marquee-run {
@@ -71,247 +71,36 @@
 
         .main-wrapper {
             flex: 1;
-            padding: 20px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
         }
 
         .glass-box {
             width: 100%;
             max-width: 620px;
-            background: var(--glass-white);
-            backdrop-filter: blur(18px);
-            border: 1px solid var(--border-white);
-            border-radius: 22px;
-            padding: 28px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px 25px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 200, 255, 0.25);
+            box-shadow: 0 15px 45px rgba(255, 100, 255, 0.25);
+        }
+
+        /* 新标题 Eternity */
+        .eternity-title {
+            font-size: 2.4rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff9aff, #00f0ff, #ff9aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(255, 150, 255, 0.6);
         }
 
         .player-title { 
-            color: var(--main-blue); 
-            font-size: 1.35rem; 
-            margin: 18px 0; 
-            font-weight: bold;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
-        }
-
-        /* 歌词区优化 */
-        .lyric-container {
-            height: 68px;
-            overflow: hidden;
-            margin-bottom: 18px;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-
-        #lyric-text { 
             color: #fff; 
-            font-size: 1.02rem; 
-            text-shadow: 0 0 8px var(--main-blue);
-            padding: 0 15px;
-        }
-
-        audio {
-            width: 100%;
-            filter: invert(1) hue-rotate(170deg) brightness(1.4);
-            margin-bottom: 22px;
-        }
-
-        .song-list {
-            text-align: left;
-            max-height: 260px;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.12);
-            border-radius: 12px;
-            border: 1px solid rgba(0, 240, 255, 0.15);
-        }
-
-        .song-item {
-            padding: 13px 18px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            transition: 0.2s;
-        }
-
-        .song-item:hover { 
-            background: rgba(0, 210, 255, 0.15); 
-        }
-        .song-item.active {
-            border-left: 5px solid var(--main-blue);
-            background: rgba(0, 210, 255, 0.25);
-            color: var(--main-blue);
-            font-weight: bold;
-        }
-
-        /* 底部信息栏 - 天蓝色主题 */
-        .bottom-info {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(12px);
-            padding: 22px;
-            border-top: 1px solid var(--border-white);
-            margin-top: 30px;
-        }
-
-        .footer-grid {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .intro-section { flex: 2; min-width: 200px; padding-right: 25px; margin-bottom: 15px; }
-        .time-section { flex: 1; text-align: right; min-width: 180px; }
-
-        #display-date { 
-            font-size: 1.05rem; 
-            opacity: 0.9; 
-            margin-bottom: 4px;
-        }
-        #display-time { 
-            font-size: 2.1rem; 
-            font-weight: bold; 
-            color: var(--main-blue); 
-            text-shadow: 0 0 12px rgba(0, 240, 255, 0.7);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="bg-fixed"></div>
-    <div class="bg-overlay"></div>
-
-    <div class="header-marquee">
-        <div class="marquee-content">
-             ✨ 经典旋律：欢迎来到白嫖联盟音乐空间 —— 听见自由的声音，看见永恒的幂姐 ✨
-        </div>
-    </div>
-
-    <div class="main-wrapper">
-        <div class="glass-box">
-            <h2 style="letter-spacing: 2px; color: #fff;">经典旋律播放器</h2>
-            
-            <div class="player-title" id="track-name">正在载入...</div>
-
-            <div class="lyric-container">
-                <div id="lyric-text">♪ 歌词随旋律跳动中... ♪</div>
-            </div>
-
-            <audio id="audio-player" controls></audio>
-
-            <div class="song-list" id="list-render"></div>
-        </div>
-    </div>
-
-    <div class="bottom-info">
-        <div class="footer-grid">
-            <div class="intro-section">
-                <h4 style="color: var(--main-blue); margin-bottom: 8px;">👤 个人简介</h4>
-                <p style="font-size: 0.85rem; color: #ccc; line-height: 1.5;">
-                    白嫖联盟核心成员。坚持“资源共享，音乐自由”的原则。
-                    喜欢用代码构建美感，背景常驻杨幂高清图以保证系统核心稳定运行。
-                </p>
-            </div>
-            <div class="time-section">
-                <div id="display-date">2026年4月3日 星期五</div>
-                <div id="display-time">00:00:00</div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const mySongs = [
-            { name: "明年今日", url: "https://files.catbox.moe/lsees9.flac" },
-            { name: "爱就爱了", url: "https://files.catbox.moe/hbet5m.mp3" },
-            { name: "好好恋爱", url: "https://files.catbox.moe/t6x5cp.flac" },
-            { name: "光辉岁月", url: "https://files.catbox.moe/4tx3om.flac" },
-            { name: "第几次爱的人", url: "https://files.catbox.moe/o5rhh5.flac" },
-            { name: "二宝子的楼兰", url: "https://files.catbox.moe/yejdad.flac" },
-            { name: "富士山下", url: "https://files.catbox.moe/qgh684.flac" },
-            { name: "好心好报", url: "https://files.catbox.moe/5b4cw2.flac" }
-        ];
-
-        const audio = document.getElementById('audio-player');
-        const listContainer = document.getElementById('list-render');
-        const trackTitle = document.getElementById('track-name');
-        let currentIdx = 0;
-
-        function renderSongs() {
-            listContainer.innerHTML = '';
-            mySongs.forEach((song, i) => {
-                const item = document.createElement('div');
-                item.className = `song-item ${i === currentIdx ? 'active' : ''}`;
-                item.innerHTML = `<span>${i+1}. ${song.name}</span> <small style="opacity:0.5">PLAY</small>`;
-                item.onclick = () => playThis(i);
-                listContainer.appendChild(item);
-            });
-        }
-
-        function playThis(i) {
-            currentIdx = i;
-            audio.src = mySongs[i].url;
-            trackTitle.innerText = mySongs[i].name;
-            renderSongs();
-            audio.play();
-        }
-
-        audio.onended = () => {
-            currentIdx = (currentIdx + 1) % mySongs.length;
-            playThis(currentIdx);
-        };
-
-        // 改进的时间显示（包含完整年月日星期）
-        function updateTime() {
-            const now = new Date();
-            const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-            
-            const dateStr = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${weekDays[now.getDay()]}`;
-            const timeStr = now.toLocaleTimeString('zh-CN', { 
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            
-            document.getElementById('display-date').innerText = dateStr;
-            document.getElementById('display-time').innerText = timeStr;
-        }
-
-        window.onload = () => {
-            renderSongs();
-            setInterval(updateTime, 1000);
-            updateTime();
-
-            audio.src = mySongs[0].url;
-            trackTitle.innerText = mySongs[0].name;
-        };
-
-        // 歌词跳动
-        const lyricsArray = [
-            "把心收回 忘了那是谁",
-            "在喧嚣世界 找一点安慰",
-            "白嫖联盟 听见自由",
-            "幂姐相伴 歌声不断",
-            "经典旋律 永不落幕"
-        ];
-
-        setInterval(() => {
-            if (!audio.paused) {
-                const rand = Math.floor(Math.random() * lyricsArray.length);
-                document.getElementById('lyric-text').innerText = lyricsArray[rand];
-            }
-        }, 4800);
-    </script>
-</body>
-</html>
+            font-size:
