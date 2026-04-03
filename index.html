@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白嫖联盟 | 个人音乐空间</title>
+    <style>
+        :root {
+            --main-blue: #00d2ff;
+            --dark-blue: #3a7bd5;
+            --glass: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            /* 背景图设置 - 建议替换为您喜欢的杨幂高清图链接 */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=2070') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 顶部跑马灯 */
+        .marquee-container {
+            width: 100%;
+            background: rgba(0, 210, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--glass);
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 主体内容 */
+        .main-content {
+            margin-top: 80px;
+            width: 90%;
+            max-width: 800px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .logo-area img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--main-blue);
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px var(--main-blue);
+        }
+
+        /* 播放器样式 */
+        .player-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+        }
+
+        .lyrics-box {
+            height: 100px;
+            overflow-y: hidden;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            line-height: 25px;
+        }
+
+        .active-lyric {
+            color: var(--main-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px var(--main-blue);
+        }
+
+        audio {
+            width: 100%;
+            filter: invert(100%) hue-rotate(180deg) brightness(1.5);
+        }
+
+        /* 底部信息 */
+        footer {
+            margin-top: auto;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-section {
+            text-align: left;
+            border-left: 3px solid var(--main-blue);
+            padding-left: 15px;
+        }
+
+        .datetime-section {
+            font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--main-blue);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="marquee-container">
+        <div class="marquee-text">
+             🚀 欢迎来到白嫖联盟音乐空间 —— 这里的音乐永远免费，这里的灵魂永远自由！ 🚀 
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="logo-area">
+            <img src="https://via.placeholder.com/80/00d2ff/ffffff?text=BP" alt="白嫖联盟">
+            <h2>白嫖联盟 · 官方音乐盒</h2>
+        </div>
+
+        <div class="player-container">
+            <h3>正在播放：爱的供养 - 翻唱版</h3>
+            <div class="lyrics-box" id="lyrics">
+                <p class="active-lyric">把心收回 忘了那是谁</p>
+                <p>在这喧嚣的世界里 找一点安慰</p>
+                <p>（歌词随进自动滚动展示区域）</p>
+            </div>
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                您的浏览器不支持播放器。
+            </audio>
+        </div>
+    </div>
+
+    <footer>
+        <div class="info-grid">
+            <div class="intro-section">
+                <h4>自我介绍</h4>
+                <p style="font-size: 0.8rem; margin-top: 5px; color: #ccc;">
+                    白嫖联盟资深成员，热爱技术与艺术的融合。
+                    坚持分享，不忘初心。
+                </p>
+            </div>
+            <div class="datetime-section">
+                <div id="date">YYYY-MM-DD</div>
+                <div id="time" style="font-weight: bold; font-size: 1.5rem;">00:00:00</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 时间刷新功能
+        function updateDateTime() {
+            const now = new Date();
+            const dateStr = now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日";
+            const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
+                            now.getMinutes().toString().padStart(2, '0') + ":" + 
+                            now.getSeconds().toString().padStart(2, '0');
+            
+            document.getElementById('date').innerText = dateStr;
+            document.getElementById('time').innerText = timeStr;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // 简单的歌词滚动模拟（实际可根据音频进度调整）
+        const lyrics = document.getElementById('lyrics');
+        let scroll = 0;
+        setInterval(() => {
+            scroll = (scroll + 25) % 75;
+            lyrics.scrollTop = scroll;
+        }, 3000);
+    </script>
+</body>
+</html>
