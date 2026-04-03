@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>经典旋律 | 科技音频空间</title>
+    <title>经典旋律 | 纯净音频空间</title>
     <style>
         :root {
             --neon-blue: #00f3ff;
             --neon-purple: #bc13fe;
             --tech-bg: #020b1a;
-            --glass: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -28,7 +27,7 @@
         .bg-layer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(2, 11, 26, 0.85), rgba(18, 0, 36, 0.85)),
+            background: linear-gradient(135deg, rgba(2, 11, 26, 0.8), rgba(18, 0, 36, 0.8)),
                         url('https://w.wallhaven.cc/full/85/wallhaven-85m7qy.jpg');
             background-size: cover;
             background-position: center;
@@ -44,82 +43,70 @@
                               linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -1;
-            animation: gridMove 8s linear infinite;
         }
 
-        @keyframes gridMove { from { transform: translateY(0); } to { transform: translateY(40px); } }
-
+        /* 顶部跑马灯 */
         .marquee {
             width: 100%; background: rgba(0, 0, 0, 0.9);
-            padding: 10px 0; border-bottom: 2px solid var(--neon-blue);
+            padding: 12px 0; border-bottom: 2px solid var(--neon-blue);
             position: fixed; top: 0; z-index: 100;
         }
 
         .marquee-text {
             display: inline-block; white-space: nowrap;
-            animation: moveText 25s linear infinite;
+            animation: moveText 20s linear infinite;
             color: var(--neon-blue); font-weight: bold;
+            letter-spacing: 2px;
         }
 
         @keyframes moveText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        .search-area { margin-top: 80px; width: 90%; max-width: 600px; z-index: 10; }
-        .search-input {
-            width: 100%; padding: 12px 25px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--neon-purple);
-            border-radius: 50px; color: #fff; outline: none;
-            box-shadow: 0 0 10px var(--neon-purple);
-        }
-
+        /* 主体面板 */
         .main-panel {
-            margin: 30px 0 50px;
-            width: 90%; max-width: 800px;
-            background: var(--glass);
+            margin: 100px 0 50px;
+            width: 90%; max-width: 700px;
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px; padding: 30px;
             box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            z-index: 10;
         }
 
-        .player-header { border-left: 4px solid var(--neon-blue); padding-left: 15px; margin-bottom: 20px; }
-        
+        .header h1 {
+            text-align: center;
+            background: linear-gradient(to right, #00f3ff, #bc13fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* 播放器 */
+        .player-status { color: var(--neon-blue); font-size: 14px; margin-bottom: 10px; text-align: center; }
         audio {
-            width: 100%; margin: 15px 0;
+            width: 100%; height: 45px;
             filter: invert(1) hue-rotate(180deg) brightness(1.5);
+            margin-bottom: 20px;
         }
 
-        /* 列表区域 - 确保高度足够且可见 */
-        .list-container { 
-            min-height: 200px; 
-            max-height: 400px; 
-            overflow-y: auto; 
-            text-align: left;
-            background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-            padding: 10px;
-        }
-
+        /* 列表区域 */
+        .list-title { color: var(--neon-purple); border-bottom: 1px solid var(--neon-purple); padding-bottom: 5px; margin-bottom: 10px; font-size: 14px; }
         .song-item {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            cursor: pointer;
-            display: flex; justify-content: space-between;
+            padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer; display: flex; justify-content: space-between;
             transition: 0.3s;
         }
+        .song-item:hover { background: rgba(0, 243, 255, 0.1); }
+        .song-item.active { border-left: 4px solid var(--neon-blue); background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); }
 
-        .song-item:hover { background: rgba(0, 243, 255, 0.15); }
-        .song-item.active { background: rgba(0, 243, 255, 0.2); color: var(--neon-blue); border-left: 3px solid var(--neon-blue); font-weight: bold; }
-        .tag { font-size: 10px; opacity: 0.8; border: 1px solid; padding: 1px 4px; border-radius: 3px; color: var(--neon-purple); }
-
+        /* 底部 */
         footer {
-            width: 100%; background: rgba(0, 0, 0, 0.95);
+            margin-top: auto; width: 100%; background: rgba(0, 0, 0, 0.95);
             padding: 25px; border-top: 1px solid var(--neon-blue);
         }
-
-        .footer-content { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; }
-        .intro-box { flex: 2; font-size: 13px; color: #999; padding-right: 20px; min-width: 250px; }
-        .time-box { flex: 1; text-align: right; color: var(--neon-purple); min-width: 150px; }
+        .footer-content { max-width: 700px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
+        .intro { flex: 2; font-size: 13px; color: #888; line-height: 1.6; }
+        .clock { flex: 1; text-align: right; color: var(--neon-purple); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -129,100 +116,18 @@
 
     <div class="marquee">
         <div class="marquee-text">
-            SYSTEM ONLINE :: 经典旋律中心 :: 正在同步 music.json 及 念心.js 接口 :: 资源来自白嫖联盟...
+            🚀 欢迎访问「经典旋律」:: 音频轨道已就绪 :: 全部歌曲来自白嫖联盟无损仓库 :: 正在播放高清流媒体...
         </div>
-    </div>
-
-    <div class="search-area">
-        <input type="text" id="searchInput" class="search-input" placeholder="输入关键词搜索 (QingMusic/念心.js)...">
     </div>
 
     <div class="main-panel">
-        <div class="player-header">
-            <h1 style="letter-spacing: 3px; background: linear-gradient(to right, #00f3ff, #bc13fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">经典旋律</h1>
-            <p id="curTitle" style="font-size: 13px; color: var(--neon-blue); margin-top: 5px;">正在加载列表...</p>
+        <div class="header">
+            <h1>经典旋律</h1>
+            <div class="player-status" id="status">准备就绪</div>
         </div>
 
-        <audio id="player" controls></audio>
+        <audio id="audio" controls autoplay></audio>
 
-        <div class="list-container" id="list"></div>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="intro-box">
-                <h4 style="color:var(--neon-blue); margin-bottom: 5px;">关于经典旋律</h4>
-                <p>本站由白嫖联盟技术支持。系统核心采用杨幂背景图作为稳定性挂载件。程序仅供交流学习。</p>
-            </div>
-            <div class="time-box">
-                <div id="dateStr" style="font-size: 12px; margin-bottom: 5px;">加载日期...</div>
-                <div id="timeStr" style="font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 10px var(--neon-purple);">00:00:00</div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // 1. 数据定义
-        const songs = [
-            { name: "明年今日", url: "https://files.catbox.moe/lsees9.flac", type: "FLAC" },
-            { name: "爱就爱了", url: "https://files.catbox.moe/hbet5m.mp3", type: "MP3" },
-            { name: "好好恋爱", url: "https://files.catbox.moe/t6x5cp.flac", type: "FLAC" },
-            { name: "光辉岁月", url: "https://files.catbox.moe/4tx3om.flac", type: "FLAC" },
-            { name: "第几次爱的人", url: "https://files.catbox.moe/o5rhh5.flac", type: "FLAC" },
-            { name: "二宝子的楼兰", url: "https://files.catbox.moe/yejdad.flac", type: "FLAC" },
-            { name: "富士山下", url: "https://files.catbox.moe/qgh684.flac", type: "FLAC" },
-            { name: "好心好报", url: "https://files.catbox.moe/5b4cw2.flac", type: "FLAC" }
-        ];
-
-        const audio = document.getElementById('player');
-        const listDiv = document.getElementById('list');
-        const curTitle = document.getElementById('curTitle');
-        let currentIndex = 0;
-
-        // 2. 渲染函数 (修复了列表不显示的BUG)
-        function render() {
-            if (!listDiv) return;
-            let html = '';
-            songs.forEach((s, i) => {
-                html += `
-                <div class="song-item ${i === currentIndex ? 'active' : ''}" onclick="playSong(${i})">
-                    <span>${i+1}. ${s.name}</span>
-                    <span class="tag">${s.type}</span>
-                </div>`;
-            });
-            listDiv.innerHTML = html;
-        }
-
-        // 3. 播放逻辑
-        function playSong(i) {
-            currentIndex = i;
-            audio.src = songs[i].url;
-            curTitle.innerText = "正在播放: " + songs[i].name;
-            render(); // 刷新高亮状态
-            audio.play().catch(() => {
-                curTitle.innerText = "点击播放: " + songs[i].name;
-            });
-        }
-
-        // 4. 自动播放下一首
-        audio.onended = () => {
-            currentIndex = (currentIndex + 1) % songs.length;
-            playSong(currentIndex);
-        };
-
-        // 5. 时间刷新
-        function updateClock() {
-            const n = new Date();
-            document.getElementById('dateStr').innerText = n.toLocaleDateString();
-            document.getElementById('timeStr').innerText = n.toLocaleTimeString();
-        }
-
-        // 6. 初始化执行
-        window.onload = () => {
-            render();
-            setInterval(updateClock, 1000);
-            updateClock();
-            
-            // 搜索框回车监听
-            document.getElementById('searchInput').addEventListener('keypress', (e) => {
-                if(
+        <div class="list-title">🎵 播放列表</div>
+        <div id="playlist">
+            <div class="song-item active" onclick="playIdx(0)"><span>1. 明年今日</span>
