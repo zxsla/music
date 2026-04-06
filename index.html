@@ -78,7 +78,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             box-shadow: 0 0 18px rgba(0, 240, 255, 0.4);
         }
         #lyric-text {
@@ -89,23 +89,6 @@
             text-shadow: 0 0 12px #00f0ff, 0 0 25px #ff9aff;
             transition: opacity 0.5s ease;
             line-height: 1.45;
-        }
-        .song-lyric-box {
-            min-height: 180px;
-            background: rgba(0, 0, 0, 0.55);
-            border: 1px solid rgba(255, 220, 255, 0.45);
-            border-radius: 16px;
-            padding: 18px 22px;
-            margin-bottom: 25px;
-            text-align: left;
-            overflow-y: auto;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
-            line-height: 1.65;
-            font-size: 1.05rem;
-        }
-        #song-lyric {
-            opacity: 0.95;
-            transition: all 0.6s ease;
         }
         .player-title {
             font-size: 1.28rem;
@@ -118,157 +101,4 @@
         .song-list {
             text-align: left;
             max-height: 380px;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.22);
-            border-radius: 14px;
-            border: 1px solid rgba(255,180,255,0.2);
-        }
-        .song-item {
-            padding: 14px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            cursor: pointer;
-        }
-        .song-item:hover, .song-item.active {
-            background: rgba(255,150,255,0.28);
-            color: #ff9aff;
-        }
-        .bottom-info {
-            background: rgba(0,0,0,0.65);
-            backdrop-filter: blur(12px);
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255,200,255,0.3);
-        }
-        #display-date {
-            font-size: 1.15rem;
-            margin-bottom: 6px;
-            opacity: 0.95;
-        }
-        #display-time {
-            font-size: 2.1rem;
-            font-weight: bold;
-            color: #00f0ff;
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
-        }
-    </style>
-</head>
-<body>
-    <div class="bg-fixed"></div>
-    <div class="bg-overlay"></div>
-
-    <div class="header-marquee">
-        Eternity · 白嫖联盟永恒音乐空间
-    </div>
-
-    <div class="main">
-        <div class="glass-box">
-            <div class="title">ETERNITY</div>
-            <div class="subtitle">白嫖联盟 · 永恒音乐空间</div>
-
-            <div class="lyric-container">
-                <div id="lyric-text">♪ 愿时光温柔，愿你永恒 ♪</div>
-            </div>
-
-            <div class="song-lyric-box">
-                <div id="song-lyric">点击歌曲开始播放，即可显示歌词</div>
-            </div>
-
-            <div class="player-title" id="track-name">正在载入歌曲...</div>
-            <audio id="audio-player" controls></audio>
-
-            <div class="song-list" id="list-render"></div>
-        </div>
-    </div>
-
-    <div class="bottom-info">
-        <div id="display-date"></div>
-        <div id="display-time"></div>
-    </div>
-
-    <script>
-        const mySongs = [
-            { name: "明年今日", url: "https://files.catbox.moe/lsees9.flac", lyric: "若这一束吊灯倾泻下来\n或者我已不会存在\n即使你不爱亦不需要分开\n若这一刻我竟严重痴呆\n根本不需要被爱\n永远在床上发梦\n余生都不会再悲哀\n\n人总需要勇敢生存\n我还是重新许愿\n例如学会承受失恋\n\n明年今日 别要再失眠\n床褥都改变\n如果有幸会面\n或在同伴新婚的盛宴\n惶惑地等待你出现\n\n明年今日 未见你一年\n谁舍得改变\n离开你六十年\n但愿能认得出你的子女\n临别亦听得到你讲再见" },
-            { name: "爱就爱了", url: "https://files.catbox.moe/hbet5m.mp3", lyric: "他剪了新头发\n电话也换了号码\n怎么问都不回答\n算了吧\n\n爱了就爱了\n若失去感觉\n算了就算了\n结果别去管他\n爱了就爱了\n别再自我惩罚\n做了就做了" },
-            { name: "好好恋爱", url: "https://files.catbox.moe/t6x5cp.flac", lyric: "好好恋爱 好好相爱\n别再犹豫 别再徘徊\n好好恋爱 好好相爱\n别让爱变成伤害\n\n我只想和你 好好恋爱\n不管未来 多么无奈\n我只想和你 好好相爱\n直到永远 不分开" },
-            { name: "光辉岁月", url: "https://files.catbox.moe/4tx3om.flac", lyric: "钟声响起归家的讯号\n在他生命里仿佛带点唏嘘\n黑色肌肤给他的意义\n是一生奉献肤色斗争中\n\n风雨中抱紧自由\n一生经过彷徨的挣扎\n自信可改变未来\n问谁又能做到\n\n今天只有残留的躯壳\n迎接光辉岁月\n风雨中抱紧自由" },
-            { name: "第几次爱的人", url: "https://files.catbox.moe/o5rhh5.flac", lyric: "第几次爱的人\n第几次心碎\n第几次相信爱情\n又第几次流泪\n\n我已经忘了\n爱是什么滋味\n只记得每次心痛\n都刻骨铭心" },
-            { name: "二宝子的楼兰", url: "https://files.catbox.moe/yejdad.flac", lyric: "楼兰的姑娘\n你的眼睛像星星\n楼兰的姑娘\n你的笑容最动人\n\n我愿为你\n穿越千年风沙\n只为再见你一面\n在那古老的楼兰" },
-            { name: "富士山下", url: "https://files.catbox.moe/qgh684.flac", lyric: "拦路雨偏似雪花\n饮泣的你冻吗\n这风褛我给你磨到有襟花\n连调了职也不怕\n怎么始终牵挂\n\n谁能凭爱意要富士山私有\n何不把悲哀感觉假设是来自你虚构\n要拥有必先懂失去怎接受\n曾沾湿你双眼的泪\n我亦无从安慰" },
-            { name: "好心好报", url: "https://files.catbox.moe/5b4cw2.flac", lyric: "好心有好报\n好心有好报\n善良的人儿啊\n老天自有安排\n\n付出总有回报\n不要灰心丧气\n好心总会有好报" },
-            { name: "嘎嘎", url: "https://files.catbox.moe/yjarpu.flac", lyric: "嘎嘎嘎嘎\n嘎嘎嘎嘎\n生活就像一场戏\n我们都在演自己\n\n开心就笑一笑\n难过就哭一哭\n别太认真\n别太计较" },
-            { name: "爱如星火", url: "https://files.catbox.moe/d5bklp.flac", lyric: "爱如星火\n点点光芒\n照亮我黑暗的心房\n爱如星火\n温暖如初\n让我不再孤独彷徨\n\n哪怕世界再冷\n有你在我身旁\n我就有了方向" },
-            { name: "那一年那一天", url: "https://files.catbox.moe/fawyem.flac", lyric: "那一年那一天\n我们相遇在街角\n那一年那一天\n你对我微微一笑\n\n时光匆匆流走\n记忆却永不老\n那一年那一天\n是我最美的遇见" },
-            { name: "平凡之路", url: "https://files.catbox.moe/89l1hc.flac", lyric: "徘徊着的 在路上的\n你要走吗 Via Via\n易碎的 骄傲着\n那也曾是我的模样\n\n我曾经跨过山和大海\n也穿过人山人海\n我曾经拥有着的一切\n转眼都飘散如烟\n\n我行过许多地方\n我看过许多风景\n我听过许多故事\n却没找到属于我的那一个\n\n直到看见平凡才是唯一的答案" },
-            { name: "相濡以沫", url: "https://files.catbox.moe/0oluxu.flac", lyric: "相濡以沫\n不离不弃\n一生一世\n只为你\n\n无论风雨\n无论贫穷\n我都会陪在你身边\n直到永远" },
-            { name: "不会改变", url: "https://files.catbox.moe/zsgxyr.flac", lyric: "我对你的爱\n不会改变\n无论时间如何流逝\n我的心依然为你跳动\n\n不会改变\n不会改变\n这份感情\n永远不变" },
-            { name: "朋克万岁", url: "https://files.catbox.moe/k2vbz2.flac", lyric: "朋克万岁\n摇滚万岁\n我们不服输\n我们不低头\n\n大声喊出我们的愤怒\n大声唱出我们的自由\n朋克精神永存\n朋克万岁" },
-            { name: "500公里", url: "https://files.catbox.moe/gjyhqw.flac", lyric: "开着车 行驶在路上\n五百公里 去见你\n不管多远\n我都要去\n\n五百公里\n只为见你一面\n五百公里\n只为拥你入怀" },
-            { name: "罪人", url: "https://files.catbox.moe/9p209l.flac", lyric: "我是个罪人\n爱上了不该爱的人\n我是个罪人\n明知没有结果还执迷不悟\n\n请原谅我\n这份不该有的感情\n请原谅我\n爱你爱得那么深" },
-            { name: "曾经的你", url: "https://files.catbox.moe/6nm44r.flac", lyric: "曾梦想仗剑走天涯\n看一看世界的繁华\n年少的心总有些轻狂\n如今你四海为家\n\n每一次难过的时候\n就独自看一看大海\n总想起身边走在路上的朋友\n有多少正在疗伤\n\n我多想回到那个曾经的你\n无忧无虑 充满希望的你" }
-        ];
-
-        const audio = document.getElementById('audio-player');
-        const listContainer = document.getElementById('list-render');
-        const trackTitle = document.getElementById('track-name');
-        const lyricText = document.getElementById('lyric-text');
-        const songLyric = document.getElementById('song-lyric');
-        let currentIdx = 0;
-
-        const lyricsArray = [
-            "♪ 愿时光温柔，愿你永恒 ♪",
-            "把心收回 忘了那是谁",
-            "在喧嚣世界 找一点安慰",
-            "白嫖联盟 永恒相伴",
-            "愿你被这个世界温柔以待",
-            "♡ Eternity ♡"
-        ];
-
-        function renderSongs() {
-            listContainer.innerHTML = '';
-            mySongs.forEach((song, i) => {
-                const item = document.createElement('div');
-                item.className = `song-item ${i === currentIdx ? 'active' : ''}`;
-                item.innerHTML = `${i+1}. ${song.name}`;
-                item.onclick = () => playThis(i);
-                listContainer.appendChild(item);
-            });
-        }
-
-        function playThis(i) {
-            currentIdx = i;
-            const song = mySongs[i];
-            trackTitle.innerText = song.name;
-            songLyric.innerHTML = song.lyric.replace(/\n/g, '<br>');
-
-            audio.src = song.url;
-            audio.load();
-            audio.play().catch(() => {
-                if (song.url.endsWith('.flac')) {
-                    audio.src = song.url.replace('.flac', '.mp3');
-                    audio.load();
-                    audio.play().catch(err => console.log('播放失败:', err));
-                }
-            });
-            renderSongs();
-        }
-
-        audio.onended = () => {
-            currentIdx = (currentIdx + 1) % mySongs.length;
-            playThis(currentIdx);
-        };
-
-        setInterval(() => {
-            if (!audio.paused) {
-                const rand = Math.floor(Math.random() * lyricsArray.length);
-                lyricText.style.opacity = 0;
-                setTimeout(() => {
-                    lyricText.innerText = lyricsArray[rand];
-                    lyricText.style.opacity = 1;
-                }, 400);
-            }
-        }, 5000);
-
-        function updateTime() {
-            const now = new Date();
-            const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-           
+            overflow-y:
