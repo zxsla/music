@@ -70,7 +70,6 @@
             margin-bottom: 25px;
             opacity: 0.92;
         }
-        /* 原随机短句 */
         .lyric-container {
             height: 80px;
             background: rgba(0, 0, 0, 0.48);
@@ -91,7 +90,6 @@
             transition: opacity 0.5s ease;
             line-height: 1.45;
         }
-        /* 新增：具体歌词显示区 */
         .song-lyric-box {
             min-height: 160px;
             background: rgba(0, 0, 0, 0.55);
@@ -167,12 +165,10 @@
             <div class="title">ETERNITY</div>
             <div class="subtitle">白嫖联盟 · 永恒音乐空间</div>
 
-            <!-- 原随机短句 -->
             <div class="lyric-container">
                 <div id="lyric-text">♪ 愿时光温柔，愿你永恒 ♪</div>
             </div>
 
-            <!-- 新增歌词显示区 -->
             <div class="song-lyric-box">
                 <div id="song-lyric">点击歌曲开始播放，即可显示歌词</div>
             </div>
@@ -185,8 +181,8 @@
     </div>
 
     <div class="bottom-info">
-        <div id="display-date">2026年4月3日 星期五</div>
-        <div id="display-time">14:21:00</div>
+        <div id="display-date"></div>
+        <div id="display-time"></div>
     </div>
 
     <script>
@@ -195,68 +191,4 @@
             { name: "爱就爱了", url: "https://files.catbox.moe/hbet5m.mp3", lyric: "他剪了新头发\n电话也换了号码\n怎么问都不回答\n算了吧\n\n爱了就爱了\n若失去感觉\n算了就算了\n结果别去管他\n爱了就爱了\n别再自我惩罚\n做了就做了" },
             { name: "好好恋爱", url: "https://files.catbox.moe/t6x5cp.flac", lyric: "暂无歌词\n正在努力收集中..." },
             { name: "光辉岁月", url: "https://files.catbox.moe/4tx3om.flac", lyric: "钟声响起归家的讯号\n在他生命里仿佛带点唏嘘\n黑色肌肤给他的意义\n是一生奉献肤色斗争中\n\n风雨中抱紧自由\n一生经过彷徨的挣扎\n自信可改变未来\n问谁又能做到\n\n今天只有残留的躯壳\n迎接光辉岁月" },
-            { name: "第几次爱的人", url: "https://files.catbox.moe/o5rhh5.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "二宝子的楼兰", url: "https://files.catbox.moe/yejdad.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "富士山下", url: "https://files.catbox.moe/qgh684.flac", lyric: "拦路雨偏似雪花\n饮泣的你冻吗\n这风褛我给你磨到有襟花\n连调了职也不怕\n怎么始终牵挂\n\n谁能凭爱意要富士山私有\n何不把悲哀感觉假设是来自你虚构\n要拥有必先懂失去怎接受" },
-            { name: "好心好报", url: "https://files.catbox.moe/5b4cw2.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "嘎嘎", url: "https://files.catbox.moe/yjarpu.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "爱如星火", url: "https://files.catbox.moe/d5bklp.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "那一年那一天", url: "https://files.catbox.moe/fawyem.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "平凡之路", url: "https://files.catbox.moe/89l1hc.flac", lyric: "徘徊着的 在路上的\n你要走吗 Via Via\n易碎的 骄傲着\n那也曾是我的模样\n\n我曾经跨过山和大海\n也穿过人山人海\n我曾经拥有着的一切\n转眼都飘散如烟\n\n直到看见平凡才是唯一的答案" },
-            { name: "相濡以沫", url: "https://files.catbox.moe/0oluxu.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "不会改变", url: "https://files.catbox.moe/zsgxyr.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "朋克万岁", url: "https://files.catbox.moe/k2vbz2.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "500公里", url: "https://files.catbox.moe/gjyhqw.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "罪人", url: "https://files.catbox.moe/9p209l.flac", lyric: "暂无歌词\n正在努力收集中..." },
-            { name: "曾经的你", url: "https://files.catbox.moe/6nm44r.flac", lyric: "曾梦想仗剑走天涯\n看一看世界的繁华\n年少的心总有些轻狂\n如今你四海为家\n\n每一次难过的时候\n就独自看一看大海\n总想起身边走在路上的朋友\n有多少正在疗伤" }
-        ];
-
-        const audio = document.getElementById('audio-player');
-        const listContainer = document.getElementById('list-render');
-        const trackTitle = document.getElementById('track-name');
-        const lyricText = document.getElementById('lyric-text');     // 随机短句
-        const songLyric = document.getElementById('song-lyric');     // 新歌词区
-        let currentIdx = 0;
-
-        const lyricsArray = [
-            "♪ 愿时光温柔，愿你永恒 ♪",
-            "把心收回 忘了那是谁",
-            "在喧嚣世界 找一点安慰",
-            "白嫖联盟 永恒相伴",
-            "愿你被这个世界温柔以待",
-            "♡ Eternity ♡"
-        ];
-
-        function renderSongs() {
-            listContainer.innerHTML = '';
-            mySongs.forEach((song, i) => {
-                const item = document.createElement('div');
-                item.className = `song-item ${i === currentIdx ? 'active' : ''}`;
-                item.innerHTML = `${i+1}. ${song.name}`;
-                item.onclick = () => playThis(i);
-                listContainer.appendChild(item);
-            });
-        }
-
-        function playThis(i) {
-            currentIdx = i;
-            audio.src = mySongs[i].url;
-            trackTitle.innerText = mySongs[i].name;
-            
-            // 显示当前歌曲歌词
-            songLyric.innerHTML = mySongs[i].lyric.replace(/\n/g, '<br>');
-            songLyric.style.opacity = 1;
-            
-            renderSongs();
-            audio.play();
-        }
-
-        audio.onended = () => {
-            currentIdx = (currentIdx + 1) % mySongs.length;
-            playThis(currentIdx);
-        };
-
-        // 保留原来的随机短句（每5秒切换）
-        setInterval(() => {
-            if (!audio.paused) {
-               
+            { name: "第几次爱的人
