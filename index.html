@@ -70,7 +70,6 @@
             margin-bottom: 25px;
             opacity: 0.92;
         }
-        /* 歌词区 - 加强显示 */
         .lyric-container {
             height: 80px;
             background: rgba(0, 0, 0, 0.48);
@@ -101,7 +100,7 @@
         }
         .song-list {
             text-align: left;
-            max-height: 230px;
+            max-height: 380px;   /* 已放大 */
             overflow-y: auto;
             background: rgba(0,0,0,0.22);
             border-radius: 14px;
@@ -116,7 +115,6 @@
             background: rgba(255,150,255,0.28);
             color: #ff9aff;
         }
-        /* 底部时间 - 加强显示 */
         .bottom-info {
             background: rgba(0,0,0,0.65);
             backdrop-filter: blur(12px);
@@ -161,7 +159,6 @@
         </div>
     </div>
 
-    <!-- 底部具体时间日期 -->
     <div class="bottom-info">
         <div id="display-date">2026年4月3日 星期五</div>
         <div id="display-time">14:21:00</div>
@@ -176,7 +173,19 @@
             { name: "第几次爱的人", url: "https://files.catbox.moe/o5rhh5.flac" },
             { name: "二宝子的楼兰", url: "https://files.catbox.moe/yejdad.flac" },
             { name: "富士山下", url: "https://files.catbox.moe/qgh684.flac" },
-            { name: "好心好报", url: "https://files.catbox.moe/5b4cw2.flac" }
+            { name: "好心好报", url: "https://files.catbox.moe/5b4cw2.flac" },
+            
+            // 新增的10首歌曲
+            { name: "嘎嘎", url: "https://files.catbox.moe/yjarpu.flac" },
+            { name: "爱如星火", url: "https://files.catbox.moe/d5bklp.flac" },
+            { name: "那一年那一天", url: "https://files.catbox.moe/fawyem.flac" },
+            { name: "平凡之路", url: "https://files.catbox.moe/89l1hc.flac" },
+            { name: "相濡以沫", url: "https://files.catbox.moe/0oluxu.flac" },
+            { name: "不会改变", url: "https://files.catbox.moe/zsgxyr.flac" },
+            { name: "朋克万岁", url: "https://files.catbox.moe/k2vbz2.flac" },
+            { name: "500公里", url: "https://files.catbox.moe/gjyhqw.flac" },
+            { name: "罪人", url: "https://files.catbox.moe/9p209l.flac" },
+            { name: "曾经的你", url: "https://files.catbox.moe/6nm44r.flac" }
         ];
 
         const audio = document.getElementById('audio-player');
